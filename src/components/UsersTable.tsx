@@ -41,12 +41,19 @@ const options: Intl.DateTimeFormatOptions = {
 const UsersTable = () => {
   const dispatch = useDispatch();
   const rows = useSelector((state: RootState) => state.users);
+
   const selectedRows = useSelector(
     (state: RootState) => state.users.selectedRows
   );
   const selectedRow = useSelector(
     (state: RootState) => state.users.selectedRow
   );
+
+  const user = useSelector((state: RootState) => {
+    const user = state.users.users.find((user) => user.id === selectedRow);
+    return user;
+  });
+
   const page = useSelector((state: RootState) => state.users.page);
   const rowsPerPage = useSelector(
     (state: RootState) => state.users.rowsPerPage
@@ -102,6 +109,7 @@ const UsersTable = () => {
         <EditFormDialog
           open={editDialogOpen}
           onClose={handleCloseEditDialog}
+          initialValues={user}
           personId={selectedRow}
         />
         <TableHead>
@@ -151,8 +159,8 @@ const UsersTable = () => {
                 <IconButton
                   size="small"
                   aria-label="edit"
-                  onClick={async () => {
-                    await handleSelectRow(user.id);
+                  onClick={() => {
+                    handleSelectRow(user.id);
                     handleEditRow();
                   }}
                 >

@@ -69,16 +69,7 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  users: [
-    {
-      id: "43294249fsdfs",
-      name: "Anna",
-      age: 25,
-      birthDate: new Date("1998-01-16"),
-      bio: "Moja Bejbe",
-    },
-    ...rowsData,
-  ],
+  users: [...rowsData],
   selectedRows: [],
   selectedRow: "",
   page: 0,

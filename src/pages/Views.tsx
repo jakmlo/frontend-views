@@ -1,7 +1,7 @@
-import UsersTable from "../components/UsersTable";
+import GridViews from "../components/GridViews";
 
 const Views = () => {
-  return <div>Views</div>;
+  return <GridViews />;
 };
 
 export default Views;
